@@ -3,9 +3,12 @@ package com.azhar.androiddatabindingwithlivedata
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil.setContentView
+import androidx.lifecycle.ViewModelProvider
 import com.azhar.androiddatabindingwithlivedata.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var mainViewModel: MainViewModel
 
     private lateinit var binding: ActivityMainBinding
 
@@ -13,7 +16,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = setContentView(this, R.layout.activity_main)
 
-        binding.tvId
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        binding.mainViewModel =  mainViewModel
+        binding.lifecycleOwner = this
 
     }
 }
